@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Submissions{% endblock %}
+
+{% block content %}
+<section class="register-section">
+    <div class="register-container" style="max-width: 1000px;">
+        <h2>Contact Submissions</h2>
+        {% if contacts %}
+        <div class="users-table-wrapper">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Submitted On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in contacts %}
+                    <tr>
+                        <td>{{ c[0] }}</td>
+                        <td>{{ c[1] }}</td>
+                        <td>{{ c[2] }}</td>
+                        <td>{{ c[3] }}</td>
+                        <td style="max-width: 400px; white-space: pre-wrap;">{{ c[4] }}</td>
+                        <td>{{ c[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p style="text-align:center; color:var(--light-text)">No contact messages yet.</p>
+        {% endif %}
+        <p style="text-align:center; margin-top:1rem"><a href="{{ url_for('home') }}">Back to Home</a></p>
+    </div>
+</section>
+{% endblock %}

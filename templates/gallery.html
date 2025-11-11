@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<section class="gallery-section" style="padding:2rem; background:var(--accent-color);">
+    <h2 style="text-align:center; margin-bottom:1rem;">Cute Cat Gallery</h2>
+    <div class="gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
+        {% if gallery_images and gallery_images|length > 0 %}
+            {% for img in gallery_images %}
+            <div class="gallery-item" style="overflow:hidden; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.6);">
+                <img src="{{ url_for('static', filename='images/' ~ img) }}" alt="Cute cat" style="width:100%; height:220px; object-fit:cover; transition:transform .3s; display:block; background:#111;">
+            </div>
+            {% endfor %}
+        {% else %}
+            {% set imgs = ['images/cat1.svg','images/cat2.svg','images/cat3.svg','images/cat4.svg'] %}
+            {% for i in range(8) %}
+            <div class="gallery-item" style="overflow:hidden; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.6);">
+                <img src="{{ url_for('static', filename=imgs[i % imgs|length]) }}" alt="Cute cat" style="width:100%; height:220px; object-fit:cover; transition:transform .3s; display:block; background:#111;">
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+<style>
+.gallery-item img:hover { transform: scale(1.05); }
+</style>
+
+{% endblock %}

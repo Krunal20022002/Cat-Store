@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if hero_image %}
+<section class="hero" style="background: var(--bg-color);">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150%; height: 150%; z-index: 0; overflow: hidden;">
+        <img src="{{ url_for('static', filename='images/' ~ hero_image) }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: brightness(0.6) blur(1px);" alt="Hero Image">
+    </div>
+    <div class="hero-content">
+        <h1>Welcome to the World of Cats 🐱</h1>
+        <p>Discover your perfect feline companion and everything they need</p>
+        <a href="{{ url_for('shop') }}" class="cta-button">Shop Now</a>
+    </div>
+</section>
+{% else %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to the World of Cats 🐱</h1>
+        <p>Discover your perfect feline companion and everything they need</p>
+        <a href="{{ url_for('shop') }}" class="cta-button">Shop Now</a>
+    </div>
+</section>
+{% endif %}
+
+<section class="featured-categories">
+    <h2>Our Categories</h2>
+    <div class="category-grid">
+        <div class="category-card">
+            <img src="{{ url_for('static', filename='images/' ~ (categories.cats if categories and categories.cats else 'cat1.svg')) }}" alt="Cats">
+            <h3>Cats</h3>
+            <p>Find your perfect companion</p>
+        </div>
+        <div class="category-card">
+            <img src="{{ url_for('static', filename='images/' ~ (categories.food if categories and categories.food else 'cat2.svg')) }}" alt="Cat Food">
+            <h3>Food</h3>
+            <p>Premium nutrition for your pet</p>
+        </div>
+        <div class="category-card">
+            <img src="{{ url_for('static', filename='images/' ~ (categories.toys if categories and categories.toys else 'cat3.svg')) }}" alt="Cat Toys">
+            <h3>Toys & Accessories</h3>
+            <p>Keep them happy and entertained</p>
+        </div>
+    </div>
+</section>
+
+<section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="features-grid">
+        <div class="feature">
+            <i class="fas fa-heart"></i>
+            <h3>Care & Love</h3>
+            <p>All our cats receive the best care and attention</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-certificate"></i>
+            <h3>Quality Products</h3>
+            <p>Premium selection of food and accessories</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-truck"></i>
+            <h3>Fast Delivery</h3>
+            <p>Quick and safe delivery to your doorstep</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Always here to help you and your cat</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

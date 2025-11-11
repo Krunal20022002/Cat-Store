@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section style="padding:3rem; background:var(--accent-color);">
+    <div style="max-width:900px; margin:0 auto; background:var(--card-bg); padding:2rem; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+        <h2>Contact Us</h2>
+        <p style="color:var(--light-text);">Have a question about adoption, products or orders? Send us a message and our team will get back to you shortly.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-list">
+                {% for category, msg in messages %}
+                    <div class="flash-message {{ category }}">{{ msg }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('contact') }}" method="POST" style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1rem;">
+            <input type="text" name="full_name" id="full_name" placeholder="Your name" required style="padding:0.75rem; border:1px solid rgba(255,255,255,0.06); border-radius:6px; background:transparent; color:var(--text-color)">
+            <input type="email" name="email" id="email" placeholder="Email" required style="padding:0.75rem; border:1px solid rgba(255,255,255,0.06); border-radius:6px; background:transparent; color:var(--text-color)">
+            <input type="tel" name="phone" id="phone" placeholder="Phone (optional)" style="padding:0.75rem; border:1px solid rgba(255,255,255,0.06); border-radius:6px; background:transparent; color:var(--text-color)">
+            <textarea name="message" id="message" placeholder="Message" rows="6" required style="padding:0.75rem; border:1px solid rgba(255,255,255,0.06); border-radius:6px; background:transparent; color:var(--text-color)"></textarea>
+            <button class="submit-btn" type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

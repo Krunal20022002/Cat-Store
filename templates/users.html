@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Registered Users{% endblock %}
+
+{% block content %}
+<section class="register-section">
+    <div class="register-container" style="max-width: 900px; width: 100%;">
+        <h2>All Registered Users</h2>
+        
+        {% if users %}
+        <div class="users-table-wrapper">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Registered On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ user[2] }}</td>
+                        <td>{{ user[3] }}</td>
+                        <td>{{ user[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p class="user-count">Total Users: <strong>{{ users|length }}</strong></p>
+        {% else %}
+        <p style="text-align: center; color: var(--light-text);">No users registered yet.</p>
+        {% endif %}
+
+        <p class="login-link" style="text-align: center; margin-top: 2rem;">
+            <a href="{{ url_for('home') }}">Back to Home</a>
+        </p>
+    </div>
+</section>
+{% endblock %}
