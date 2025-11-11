@@ -1,0 +1,6 @@
+Flask>=2.0
+Werkzeug>=2.0
+
+# Optional/dev (uncomment to use):
+# pytest>=7.0    # for running tests
+# requests>=2.0  # for HTTP-based smoke tests
